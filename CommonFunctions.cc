@@ -1,8 +1,9 @@
 
 void CommonFunctions::populateUntil(const integer x) {
    integer i = CommonFunctions::population.size() + 1; // empty + 1 = 1
-      do {
-	 integer ithprime = nth_prime(i++);
+      	integer ithprime;
+	do {
+	 ithprime = primecount::nth_prime(i++);
 	 CommonFunctions::population.push_back(ithprime);
       } while (ithprime < x);
 }
@@ -34,7 +35,8 @@ void CommonFunctions::pi (integer& ret, const integer x) {
 void CommonFunctions::theta (rational& ret, const integer x) {
    ret = 0.0;
    size_t i = 0;
-   while ((const integer prime = CommonFunctions::populations[i]) <= x) {
+   integer prime;
+   while ((prime = CommonFunctions::population[i++]) <= x) {
       ret += std::log(prime);
    }
 }
@@ -42,7 +44,9 @@ void CommonFunctions::theta (rational& ret, const integer x) {
 void CommonFunctions::psi (rational& ret, const integer x) {
    ret = 0.0;
    size_t i = 0;
-   while ((const integer prime = CommonFunctions::populations[i]) <= x) {
-      ret += std::floor(std::log(x)/std::log(prime));
+   integer prime;
+   while ((prime = CommonFunctions::population[i++]) <= x) {
+      const rational logOfPrime = std::log(prime);
+      ret += std::floor(std::log(x)/std::log(prime)) * logOfPrime;
    }
 }
