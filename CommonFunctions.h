@@ -10,12 +10,18 @@ typedef long double rational
 
 namespace CommonFunctions {
 
-extern std::vector<std::pair<integer> population;
+extern std::vector<integer> population;
    
 void pi (integer& ret, const integer x);
 
 void theta (rational& ret, const integer x);
 
 void psi (rational& ret, const integer x);
+
+void calculate (integer& ret, const integer x, void (*)(integer&, const integer));
+
+void calculate (rational& ret, const integer x, void (*)(rational&, const integer));
+
+void populateUntil(const integer x);
 
 }

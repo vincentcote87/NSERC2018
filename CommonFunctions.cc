@@ -1,62 +1,48 @@
 
-CommonFunctions::pi (integer& ret, const integer x) {
-   auto spot = std::find(population.begin(), population.end(), x);
-   if (spot == population.end()) {
-      //calculate more primes
-      
-   } else if (*spot == x) {
-      //simple case
-      ret = std::distance(population.begin(), spot)
-   } else { //past x
-      //x was not a prime, give one less than x
-      if (x < 2)
-	 ret = 0.0;
-      else {
-	 pi(ret, *population.rbegin());
-      }
+void CommonFunctions::populateUntil(const integer x) {
+   integer i = CommonFunctions::population.size() + 1; // empty + 1 = 1
+      do {
+	 integer ithprime = nth_prime(i++);
+	 CommonFunctions::population.push_back(ithprime);
+      } while (ithprime < x);
+}
+
+void CommonFunctions::calculate(integer& ret, const integer x, void (*func)(integer&, const integer)) {
+   if (x < 2)
+      ret = 0.0; //so far so true (we only do psi, theta and pi)
+   else {
+      CommonFunctions::populateUntil(x);
+      func(ret, x);
    }
 }
 
-CommonFunctions::theta (rational& ret, const integer x) {
-   auto spot = std::find(population.begin(), population.end(), x);
-   if (spot == population.end()) {
-      //calculate more primes
-      
-   } else if (*spot == x) {
-      //simple case
-      long double t = 0.0;
-      for (auto i = population.begin(); i != spot; ++i) {
-	 t += std::log(*i);
-      }
-      ret = t;
-   } else { //past x
-      //x was not a prime, give one less than x
-      if (x < 2)
-	 ret = 0.0;
-      else {
-	 theta(ret, *population.rbegin());
-      }
+void CommonFunctions::calculate(rational& ret, const integer x, void (*func)(rational&, const integer)) {
+   if (x < 2)
+      ret = 0.0; //so far so true (we only do psi, theta and pi)
+   else {
+      CommonFunctions::populateUntil(x);
+      func(ret, x);
    }
 }
 
-void psi (rational& ret, const integer x) {
-   auto spot = std::find(population.begin(), population.end(), x);
-   if (spot == population.end()) {
-      //calculate more primes
-      
-   } else if (*spot == x) {
-      //simple case
-      long double t = 0.0;
-      for (auto i = population.begin(); i != spot; ++i) {
-	 t += std::floor(std::log(x)/std::log(*i));
-      }
-      ret = t;
-   } else { //past x but not on the end
-      //x was not a prime, give one less than x
-      if (x < 2)
-	 ret = 0.0;
-      else {
-	 psi(ret, *population.rbegin());
-      }
+void CommonFunctions::pi (integer& ret, const integer x) {
+   for (ret = 0; CommonFunctions::population[ret] <= x; ++ret);
+   //stops when is greater than x. If x is not prime then minus one, x is prime minus one
+   //need to add one because of indexing 2 at zero
+}
+
+void CommonFunctions::theta (rational& ret, const integer x) {
+   ret = 0.0;
+   size_t i = 0;
+   while ((const integer prime = CommonFunctions::populations[i]) <= x) {
+      ret += std::log(prime);
+   }
+}
+
+void CommonFunctions::psi (rational& ret, const integer x) {
+   ret = 0.0;
+   size_t i = 0;
+   while ((const integer prime = CommonFunctions::populations[i]) <= x) {
+      ret += std::floor(std::log(x)/std::log(prime));
    }
 }
