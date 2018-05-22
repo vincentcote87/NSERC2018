@@ -1,17 +1,20 @@
+#ifndef COMMONFUNCTIONS_H
+#define COMMONFUNCTIONS_H
+
 #include <vector>
 #include <utility>
 #include <algorithm>
 #include <cmath>
 
-typedef long long integer
-typedef long double rational
+typedef long long integer;
+typedef long double rational;
 
 //psi, theta, pi
 
 namespace CommonFunctions {
 
-extern std::vector<integer> population;
-   
+std::vector<integer> population;
+
 void pi (integer& ret, const integer x);
 
 void theta (rational& ret, const integer x);
@@ -25,3 +28,7 @@ void calculate (rational& ret, const integer x, void (*)(rational&, const intege
 void populateUntil(const integer x);
 
 }
+
+#include "CommonFunctions.cc"
+
+#endif //  COMMONFUNCTIONS_H
