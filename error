@@ -1,0 +1,50 @@
+In file included from /usr/include/x86_64-linux-gnu/c++/5/bits/c++allocator.h:33:0,
+                 from /usr/include/c++/5/bits/allocator.h:46,
+                 from /usr/include/c++/5/string:41,
+                 from /usr/include/c++/5/stdexcept:39,
+                 from /usr/local/include/primecount.hpp:13,
+                 from UnitTest.cc:1:
+/usr/include/c++/5/ext/new_allocator.h: In instantiation of ‘void __gnu_cxx::new_allocator<_Tp>::construct(_Up*, _Args&& ...) [with _Up = ThetaTracker; _Args = {ThetaTracker}; _Tp = ThetaTracker]’:
+/usr/include/c++/5/bits/alloc_traits.h:530:4:   required from ‘static void std::allocator_traits<std::allocator<_CharT> >::construct(std::allocator_traits<std::allocator<_CharT> >::allocator_type&, _Up*, _Args&& ...) [with _Up = ThetaTracker; _Args = {ThetaTracker}; _Tp = ThetaTracker; std::allocator_traits<std::allocator<_CharT> >::allocator_type = std::allocator<ThetaTracker>]’
+/usr/include/c++/5/bits/vector.tcc:96:30:   required from ‘void std::vector<_Tp, _Alloc>::emplace_back(_Args&& ...) [with _Args = {ThetaTracker}; _Tp = ThetaTracker; _Alloc = std::allocator<ThetaTracker>]’
+/usr/include/c++/5/bits/stl_vector.h:932:21:   required from ‘void std::vector<_Tp, _Alloc>::push_back(std::vector<_Tp, _Alloc>::value_type&&) [with _Tp = ThetaTracker; _Alloc = std::allocator<ThetaTracker>; std::vector<_Tp, _Alloc>::value_type = ThetaTracker]’
+PsiTracker.cc:17:39:   required from here
+/usr/include/c++/5/ext/new_allocator.h:120:4: error: use of deleted function ‘ThetaTracker::ThetaTracker(ThetaTracker&&)’
+  { ::new((void *)__p) _Up(std::forward<_Args>(__args)...); }
+    ^
+In file included from PsiTracker.h:6:0,
+                 from UnitTest.cc:5:
+ThetaTracker.h:10:7: note: ‘ThetaTracker::ThetaTracker(ThetaTracker&&)’ is implicitly deleted because the default definition would be ill-formed:
+ class ThetaTracker {
+       ^
+ThetaTracker.h:10:7: error: use of deleted function ‘primesieve::iterator::iterator(const primesieve::iterator&)’
+In file included from /usr/local/include/primesieve.hpp:20:0,
+                 from ThetaTracker.h:4,
+                 from PsiTracker.h:6,
+                 from UnitTest.cc:5:
+/usr/local/include/primesieve/iterator.hpp:32:7: note: ‘primesieve::iterator::iterator(const primesieve::iterator&)’ is implicitly deleted because the default definition would be ill-formed:
+ class iterator
+       ^
+/usr/local/include/primesieve/iterator.hpp:32:7: error: use of deleted function ‘std::unique_ptr<_Tp, _Dp>::unique_ptr(const std::unique_ptr<_Tp, _Dp>&) [with _Tp = primesieve::PrimeGenerator; _Dp = std::default_delete<primesieve::PrimeGenerator>]’
+In file included from /usr/include/c++/5/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/5/locale:43,
+                 from /usr/include/c++/5/iomanip:43,
+                 from UnitTest.cc:3:
+/usr/include/c++/5/bits/unique_ptr.h:356:7: note: declared here
+       unique_ptr(const unique_ptr&) = delete;
+       ^
+In file included from /usr/include/c++/5/vector:62:0,
+                 from PsiTracker.h:4,
+                 from UnitTest.cc:5:
+/usr/include/c++/5/bits/stl_construct.h: In instantiation of ‘void std::_Construct(_T1*, _Args&& ...) [with _T1 = ThetaTracker; _Args = {ThetaTracker}]’:
+/usr/include/c++/5/bits/stl_uninitialized.h:75:18:   required from ‘static _ForwardIterator std::__uninitialized_copy<_TrivialValueTypes>::__uninit_copy(_InputIterator, _InputIterator, _ForwardIterator) [with _InputIterator = std::move_iterator<ThetaTracker*>; _ForwardIterator = ThetaTracker*; bool _TrivialValueTypes = false]’
+/usr/include/c++/5/bits/stl_uninitialized.h:126:15:   required from ‘_ForwardIterator std::uninitialized_copy(_InputIterator, _InputIterator, _ForwardIterator) [with _InputIterator = std::move_iterator<ThetaTracker*>; _ForwardIterator = ThetaTracker*]’
+/usr/include/c++/5/bits/stl_uninitialized.h:281:37:   required from ‘_ForwardIterator std::__uninitialized_copy_a(_InputIterator, _InputIterator, _ForwardIterator, std::allocator<_Tp>&) [with _InputIterator = std::move_iterator<ThetaTracker*>; _ForwardIterator = ThetaTracker*; _Tp = ThetaTracker]’
+/usr/include/c++/5/bits/stl_uninitialized.h:303:2:   required from ‘_ForwardIterator std::__uninitialized_move_if_noexcept_a(_InputIterator, _InputIterator, _ForwardIterator, _Allocator&) [with _InputIterator = ThetaTracker*; _ForwardIterator = ThetaTracker*; _Allocator = std::allocator<ThetaTracker>]’
+/usr/include/c++/5/bits/vector.tcc:422:8:   required from ‘void std::vector<_Tp, _Alloc>::_M_emplace_back_aux(_Args&& ...) [with _Args = {ThetaTracker}; _Tp = ThetaTracker; _Alloc = std::allocator<ThetaTracker>]’
+/usr/include/c++/5/bits/vector.tcc:101:23:   required from ‘void std::vector<_Tp, _Alloc>::emplace_back(_Args&& ...) [with _Args = {ThetaTracker}; _Tp = ThetaTracker; _Alloc = std::allocator<ThetaTracker>]’
+/usr/include/c++/5/bits/stl_vector.h:932:21:   required from ‘void std::vector<_Tp, _Alloc>::push_back(std::vector<_Tp, _Alloc>::value_type&&) [with _Tp = ThetaTracker; _Alloc = std::allocator<ThetaTracker>; std::vector<_Tp, _Alloc>::value_type = ThetaTracker]’
+PsiTracker.cc:17:39:   required from here
+/usr/include/c++/5/bits/stl_construct.h:75:7: error: use of deleted function ‘ThetaTracker::ThetaTracker(ThetaTracker&&)’
+     { ::new(static_cast<void*>(__p)) _T1(std::forward<_Args>(__args)...); }
+       ^
