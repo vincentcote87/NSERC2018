@@ -16,6 +16,8 @@ rational ThetaTracker::theta() {
    return Vtheta;
 }
 
+#include <iostream>
+
 void ThetaTracker::next() {
    ++Vcount;
    Vprime = it->next_prime();
@@ -32,6 +34,6 @@ rational ThetaTracker::previous() {
 }
 
 ThetaTracker::~ThetaTracker() {
-	if (it != NULL)
-		delete it;
+	//if (it != NULL)
+	//	delete it;
 }

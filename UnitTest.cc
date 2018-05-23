@@ -13,6 +13,7 @@ int main() {
 	std::cout << "n,prime,theta,psi" << std::endl;
 	while (true) {
 		tracker.next();
+		std::cout << "GOT NEXT" << ' ' << tracker.prime() << std::endl;
 		if (tracker.prime() > a)
 			break;
 		std::cout << tracker.count() << ',' << tracker.prime() << ',' << std::fixed << std::setprecision(PRECISION) << tracker.theta() << ',' << std::fixed << std::setprecision(PRECISION) << tracker.psi() << std::endl;
