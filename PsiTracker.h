@@ -5,6 +5,9 @@
 #include <cmath>
 #include "ThetaTracker.h"
 
+typedef long long integer;
+typedef long double rational;
+
 class PsiTracker {
    std::vector<ThetaTracker> tracker;
   public:
