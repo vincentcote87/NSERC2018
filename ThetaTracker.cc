@@ -1,7 +1,7 @@
 #include "ThetaTracker.h"
 
 ThetaTracker::ThetaTracker()
-   : it{}, Vcount{0}, Vtheta{0.0}, VprevTheta{}, Vprime{}
+   : it{new primesieve::iterator{}}, Vcount{0}, Vtheta{0.0}, VprevTheta{}, Vprime{}
 {}
 
 integer ThetaTracker::count() {
@@ -18,7 +18,7 @@ rational ThetaTracker::theta() {
 
 void ThetaTracker::next() {
    ++Vcount;
-   Vprime = it.next_prime();
+   Vprime = it->next_prime();
    VprevTheta = Vtheta;
    Vtheta += std::log(Vprime);
 }
@@ -26,7 +26,12 @@ void ThetaTracker::next() {
 rational ThetaTracker::previous() {
    if (Vtheta != VprevTheta) {
       --Vcount;
-      Vprime = it.prev_prime();
+      Vprime = it->prev_prime();
       Vtheta = VprevTheta;
    }
+}
+
+ThetaTracker::~ThetaTracker() {
+	if (it != NULL)
+		delete it;
 }

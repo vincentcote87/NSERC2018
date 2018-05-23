@@ -8,7 +8,7 @@ typedef long long integer;
 typedef long double rational;
 
 class ThetaTracker {
-   primesieve::iterator it;
+   primesieve::iterator* it;
    integer Vcount;
    rational Vtheta;
    rational VprevTheta;
@@ -22,6 +22,7 @@ class ThetaTracker {
    //can only call previous one time.
    rational previous();
    //void setTarget(const integer); //later
+   ~ThetaTracker();
 };
 
 #include "ThetaTracker.cc"
