@@ -17,7 +17,7 @@ rational ThetaTracker::theta() {
 }
 
 void ThetaTracker::next() {
-   ++count;
+   ++Vcount;
    Vprime = it.next_prime();
    Vtheta += std::log(Vprime);
 }
