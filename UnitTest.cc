@@ -1,8 +1,23 @@
 #include <primecount.hpp>
 #include <iostream>
+#include <iomanip>
 
-#include "CommonFunctions.h"
+#include "ThetaTracker.h"
 
+int main() {
+	integer a;
+	std::cin >> a;
+	ThetaTracker tracker;
+	std::cout << "n,prime,theta" << std::endl;
+	while (true) {
+		tracker.next();
+		if (tracker.prime() > a)
+			break;
+		std::cout << tracker.count() << ',' << tracker.prime() << ',' << std::fixed << std::setprecision(16) << tracker.theta() << std::endl;
+	} 
+}
+
+/*
 int main() {
 	std::cout << primecount::nth_prime(6) << std::endl;
 	integer number, x;
@@ -19,3 +34,4 @@ int main() {
 		std::cout << "psi(x) = " << fraction << std::endl;
 	}
 }
+*/

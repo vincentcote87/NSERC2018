@@ -1,3 +1,6 @@
+#ifndef THETATRACKER_H
+#define THETATRACKER_H
+
 #include <primesieve.hpp>
 #include <cmath>
 
@@ -16,4 +19,8 @@ class ThetaTracker {
    rational theta();
    void next();
    //void setTarget(const integer); //later
-}
+};
+
+#include "ThetaTracker.cc"
+
+#endif
