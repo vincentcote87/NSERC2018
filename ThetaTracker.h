@@ -11,6 +11,7 @@ class ThetaTracker {
    primesieve::iterator it;
    integer Vcount;
    rational Vtheta;
+   rational VprevTheta;
    integer Vprime;
   public:
    ThetaTracker();
@@ -18,6 +19,8 @@ class ThetaTracker {
    integer prime();
    rational theta();
    void next();
+   //can only call previous one time.
+   rational previous();
    //void setTarget(const integer); //later
 };
 
