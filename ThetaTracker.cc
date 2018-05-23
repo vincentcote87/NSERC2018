@@ -28,5 +28,5 @@ rational ThetaTracker::previous() {
       --Vcount;
       Vprime = it.prev_prime();
       Vtheta = VprevTheta;
-   }x
+   }
 }

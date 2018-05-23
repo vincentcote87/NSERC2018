@@ -4,12 +4,12 @@ PsiTracker::PsiTracker()
    : tracker{}
 {}
 
-void PsiTracker::bringThetaToTarget(const vector<integer>& target, const int i) {
+void PsiTracker::bringThetaToTarget(const std::vector<integer>& target, const int i) {
    while (tracker[i].prime() < target[i]) {
-	    tracker.next();
+	    tracker[i].next();
 	 }
 	 if (tracker[i].prime() > target[i])
-	    tracker.previous();
+	    tracker[i].previous();
 }
 
 void PsiTracker::next() {
@@ -21,15 +21,15 @@ void PsiTracker::next() {
    std::vector<integer> target_x;
    target_x.push_back(tracker.begin()->prime());
    integer cur_x;
-   for (size_t i = 1; (integer) std::pow(cur_x = target.begin()->prime() >= 2, i+1); ++i) {
+   for (size_t i = 1; (integer) std::pow(cur_x = tracker.begin()->prime() >= 2, i+1); ++i) {
       target_x.push_back(cur_x);
    }
    for (int i = 0; i < target_x.size(); ++i) {
       if (tracker.size() <= i) {
 	 tracker.push_back(ThetaTracker{});
-	 tracker[i]->next();
+	 tracker[i].next();
       }
-      bringTheThetaToTarget(target_x, i);
+      bringThetaToTarget(target_x, i);
    }
 }
 
@@ -49,7 +49,7 @@ rational PsiTracker::psi() {
    //tracker contains the closest prime thetas less than or equal to the target
    rational psi = 0.0;
    for (int i = 0; i < tracker.size(); ++i) { //incorrect
-      psi += tracker[i]->theta();
+      psi += tracker[i].theta();
    }
    return psi;
 }

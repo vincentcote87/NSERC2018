@@ -2,19 +2,21 @@
 #include <iostream>
 #include <iomanip>
 
-#include "ThetaTracker.h"
+#include "PsiTracker.h"
+
+const int PRECISION = 40;
 
 int main() {
 	integer a;
 	std::cin >> a;
-	ThetaTracker tracker;
-	std::cout << "n,prime,theta" << std::endl;
+	PsiTracker tracker;
+	std::cout << "n,prime,theta,psi" << std::endl;
 	while (true) {
 		tracker.next();
 		if (tracker.prime() > a)
 			break;
-		std::cout << tracker.count() << ',' << tracker.prime() << ',' << std::fixed << std::setprecision(16) << tracker.theta() << std::endl;
-	} 
+		std::cout << tracker.count() << ',' << tracker.prime() << ',' << std::fixed << std::setprecision(PRECISION) << tracker.theta() << ',' << std::fixed << std::setprecision(PRECISION) << tracker.psi() << std::endl;
+	}
 }
 
 /*
