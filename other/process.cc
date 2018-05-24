@@ -10,13 +10,13 @@ const string irrellevant = " /t";
 const int inc_size = 2;
 const string inc[inc_size] = {"cout", "std::cout"};
 bool isIncludeStatement(const string& s) {
-	int maxSize = inc[0].size();
+	int minSize = inc[0].size();
 	for (int i = 1; i < inc_size; ++i) {
-		maxSize = std::max(maxSize, (int) inc[i].size());
+		minSize = std::min(minSize, (int) inc[i].size());
 	}
 	int i;
 	for (i = 0; i < s.size() && irrellevant.find(s[i]) < irrellevant.size(); ++i);
-		if (s.size()-i < maxSize)
+		if (s.size()-i < minSize)
 				return false;
 	for (int word = 0; word < inc_size; ++word) {
 	    if (inc[word].size() > s.size() - i)
