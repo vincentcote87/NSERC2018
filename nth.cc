@@ -5,6 +5,8 @@ using namespace std;
 
 #include "PsiTracker.h"
 
+const int PRECISION = 40;
+
 int main() {
    cout << "Calculate values on a prime >= ";
    long long a;

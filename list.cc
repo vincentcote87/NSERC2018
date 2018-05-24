@@ -7,8 +7,10 @@
 const int PRECISION = 40;
 
 int main() {
-   	std::cout << "runtime,n,prime,theta,psi" << std::endl;
-    for (long long a = 1; a < 1000000000; a*=10) {
+   	long long stoppoint;
+	std::cin >> stoppoint;
+	std::cout << "runtime,n,prime,theta,psi" << std::endl;
+    for (long long a = 1; a <= stoppoint; a*=10) {
         std::chrono::steady_clock clk;
         std::chrono::time_point<std::chrono::steady_clock, std::chrono::steady_clock::duration> before = clk.now();
         PsiTracker tracker;
