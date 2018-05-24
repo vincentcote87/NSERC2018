@@ -32,8 +32,3 @@ rational ThetaTracker::previous() {
       Vtheta = VprevTheta;
    }
 }
-
-ThetaTracker::~ThetaTracker() {
-	//if (it != NULL)
-	//	delete it;
-}

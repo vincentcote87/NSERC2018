@@ -15,9 +15,7 @@ void PsiTracker::bringThetaToTarget(const std::vector<integer>& target, const in
 void PsiTracker::next() {
    if (tracker.empty()) {
       tracker.push_back(ThetaTracker{});
-      std::cout << "We got to this spot" << std::endl;
       if (tracker.empty())
-         std::cout << "wtf" << std::endl;
       tracker.begin()->next();
       return;
    }
