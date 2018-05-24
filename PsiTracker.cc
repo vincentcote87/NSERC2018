@@ -19,6 +19,7 @@ void PsiTracker::next() {
       tracker.begin()->next();
       return;
    }
+   tracker.begin()->next();
    std::vector<integer> target_x;
    target_x.push_back(tracker.begin()->prime());
    integer cur_x;
