@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <cmath>
+#include <iostream>
 #include "ThetaTracker.h"
 
 typedef long long integer;

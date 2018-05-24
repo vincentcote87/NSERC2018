@@ -23,7 +23,8 @@ void PsiTracker::next() {
    std::vector<integer> target_x;
    target_x.push_back(tracker.begin()->prime());
    integer cur_x;
-   for (size_t i = 1; (integer) std::pow(cur_x = tracker.begin()->prime() >= 2, i+1); ++i) {
+   for (size_t i = 1; (cur_x = std::pow(tracker.begin()->prime(), 1.0/((rational) i+1))) >= 2; ++i) {
+      std::cout << "cur_x" << cur_x << std::endl;
       target_x.push_back(cur_x);
    }
    for (int i = 0; i < target_x.size(); ++i) {

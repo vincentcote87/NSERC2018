@@ -2,17 +2,29 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 const string irrellevant = " /t";
-const string inc = "#include";
+const int inc_size = 2;
+const string inc[inc_size] = {"cout", "std::cout"};
 bool isIncludeStatement(const string& s) {
+	int maxSize = inc[0].size();
+	for (int i = 1; i < inc_size; ++i) {
+		maxSize = std::max(maxSize, (int) inc[i].size());
+	}
 	int i;
 	for (i = 0; i < s.size() && irrellevant.find(s[i]) < irrellevant.size(); ++i);
-	if (s.size()-i < inc.size())
-		return false;
-	return inc == s.substr(i,inc.size());
+		if (s.size()-i < maxSize)
+				return false;
+	for (int word = 0; word < inc_size; ++word) {
+	    if (inc[word].size() > s.size() - i)
+	        continue;
+		if (inc[word] == s.substr(i,inc[word].size()))
+			return true;
+	}
+	return false;
 }
 
 int main(int argN, char* arg[]) {
