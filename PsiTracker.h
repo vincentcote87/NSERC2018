@@ -21,6 +21,5 @@ private:
 void bringThetaToTarget(const std::vector<integer>&, const int i);
 };
 
-#include "PsiTracker.cc"
 
 #endif //PSITRACKER_H

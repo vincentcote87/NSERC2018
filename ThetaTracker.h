@@ -25,6 +25,5 @@ class ThetaTracker {
    ~ThetaTracker();
 };
 
-#include "ThetaTracker.cc"
 
 #endif
