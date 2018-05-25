@@ -4,11 +4,11 @@ PsiTracker::PsiTracker()
    : tracker{}
 {}
 
-void PsiTracker::bringThetaToTarget(const std::vector<integer>& target, const integer i) {
-   while (tracker[i].prime() < target[i]) {
+void PsiTracker::bringThetaToTarget(const integer cur_x) {
+   while (tracker[i].prime() < cur_x) {
 	    tracker[i].next();
 	 }
-   if (tracker[i].prime() > target[i])
+   if (tracker[i].prime() > cur_x)
       tracker[i].previous();
 }
 
@@ -35,18 +35,14 @@ rational PsiTracker::theta() {
 }
 
 void PsiTracker::populateThetas() {
-   std::vector<integer> target_x;
-   target_x.push_back(tracker.begin()->prime());
+   const integer topx = tracker.begin()->prime();
    integer cur_x;
-   for (size_t i = 1; (cur_x = std::pow(tracker.begin()->prime(), 1.0/((rational) i+1))) >= 2; ++i) {
-      target_x.push_back(cur_x);
-   }
-   for (size_t i = 0; i < target_x.size(); ++i) {
+   for (size_t i = 1; (cur_x = std::pow(topx, 1.0/((rational) i+1))) >= 2; ++i) {
       if (tracker.size() <= i) {
 	 tracker.push_back(ThetaTracker{});
 	 tracker[i].next();
       }
-      bringThetaToTarget(target_x, i);
+      bringThetaToTarget(cur_x);
    }
 }
 
