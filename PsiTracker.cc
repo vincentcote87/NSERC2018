@@ -34,7 +34,7 @@ rational PsiTracker::theta() {
    return tracker[0].theta();
 }
 
-void populateThetas() {
+void PsiTracker::populateThetas() {
    std::vector<integer> target_x;
    target_x.push_back(tracker.begin()->prime());
    integer cur_x;

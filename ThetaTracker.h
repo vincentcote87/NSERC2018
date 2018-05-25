@@ -21,7 +21,7 @@ class ThetaTracker {
    rational theta();
    void next();
    //can only call previous one time.
-   rational previous();
+   void previous();
    //void setTarget(const integer); //later
 };
 

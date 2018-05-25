@@ -26,7 +26,7 @@ void ThetaTracker::next() {
    Vtheta += std::log(Vprime);
 }
 
-rational ThetaTracker::previous() {
+void ThetaTracker::previous() {
    if (Vtheta != VprevTheta) {
       --Vcount;
       Vprime = VprevPrime;
