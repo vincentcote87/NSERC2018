@@ -4,7 +4,7 @@ PsiTracker::PsiTracker()
    : tracker{}
 {}
 
-void PsiTracker::bringThetaToTarget(const integer cur_x) {
+void PsiTracker::bringThetaToTarget(const integer cur_x, const integer i) {
    while (tracker[i].prime() < cur_x) {
 	    tracker[i].next();
 	 }
@@ -42,7 +42,7 @@ void PsiTracker::populateThetas() {
 	 tracker.push_back(ThetaTracker{});
 	 tracker[i].next();
       }
-      bringThetaToTarget(cur_x);
+      bringThetaToTarget(cur_x, i);
    }
 }
 
