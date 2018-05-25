@@ -19,7 +19,8 @@ class PsiTracker {
    rational theta();
 rational psi();
 private:
-void bringThetaToTarget(const std::vector<integer>&, const int i);
+void bringThetaToTarget(const std::vector<integer>&, const integer i);
+void populateThetas();
 };
 
 

@@ -12,6 +12,7 @@ class ThetaTracker {
    integer Vcount;
    rational Vtheta;
    rational VprevTheta;
+   integer VprevPrime;
    integer Vprime;
   public:
    ThetaTracker();
