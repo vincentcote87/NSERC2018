@@ -20,9 +20,8 @@ class ThetaTracker {
    integer prime();
    rational theta();
    void next();
-   //can only call previous one time.
+   //can only call previous one time. (It will do nothing if called more than once)
    void previous();
-   //void setTarget(const integer); //later
 };
 
 
