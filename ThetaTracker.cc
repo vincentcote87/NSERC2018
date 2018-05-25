@@ -16,8 +16,6 @@ rational ThetaTracker::theta() {
    return Vtheta;
 }
 
-#include <iostream>
-
 void ThetaTracker::next() {
    ++Vcount;
    VprevPrime = Vprime;
