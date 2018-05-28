@@ -13,13 +13,16 @@ void PsiTracker::bringThetaToTarget(const integer cur_x, const integer i) {
 }
 
 void PsiTracker::next() {
-   if (tracker.empty()) {
-      tracker.push_back(ThetaTracker{});
-      if (tracker.empty())
-      tracker.begin()->next();
-      return;
-   }
-   tracker.begin()->next();
+   ++of;
+}
+
+void PsiTracker::next_change() {
+   //This could be optimized better by looking only at prime powers
+   //which would fit better in the overall program
+   const rational last = psi();
+   do {
+      ++of;
+   } while (psi() == last);
 }
 
 integer PsiTracker::count() {
@@ -35,9 +38,8 @@ rational PsiTracker::theta() {
 }
 
 void PsiTracker::populateThetas() {
-   const integer topx = tracker.begin()->prime();
    integer cur_x;
-   for (size_t i = 1; (cur_x = std::pow(topx, 1.0/((rational) i+1))) >= 2; ++i) {
+   for (size_t i = 0; (cur_x = std::pow(of, 1.0/((rational) i+1))) >= 2; ++i) {
       if (tracker.size() <= i) {
 	 tracker.push_back(ThetaTracker{});
 	 tracker[i].next();

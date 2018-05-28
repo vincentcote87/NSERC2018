@@ -11,9 +11,11 @@ typedef long double rational;
 
 class PsiTracker {
    std::vector<ThetaTracker> tracker;
+   integer of;
   public:
    PsiTracker();
    void next();
+   void next_change();
    integer count();
    integer prime();
    rational theta();
