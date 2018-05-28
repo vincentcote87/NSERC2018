@@ -2,6 +2,7 @@
 #define THETATRACKER_H
 
 #include <primesieve.hpp>
+#include <algorithm>
 #include <cmath>
 
 typedef long long integer;

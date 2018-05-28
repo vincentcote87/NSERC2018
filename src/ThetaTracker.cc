@@ -18,16 +18,21 @@ rational ThetaTracker::theta() {
 
 void ThetaTracker::next() {
    ++Vcount;
-   VprevPrime = Vprime;
-   Vprime = it->next_prime();
-   VprevTheta = Vtheta;
-   Vtheta += std::log(Vprime);
+   if (Vtheta > VprevTheta) {
+       VprevPrime = Vprime;
+       Vprime = it->next_prime();
+       VprevTheta = Vtheta;
+       Vtheta += std::log(Vprime); 
+   } else {
+      std::swap(Vprime, VprevPrime);
+      std::swap(Vtheta, VprevTheta);
+   }
 }
 
 void ThetaTracker::previous() {
-   if (Vtheta != VprevTheta) {
+   if (Vtheta > VprevTheta) {
       --Vcount;
-      Vprime = VprevPrime;
-      Vtheta = VprevTheta;
+      std::swap(Vprime, VprevPrime);
+      std::swap(Vtheta, VprevTheta);
    }
 }

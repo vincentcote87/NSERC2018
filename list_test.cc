@@ -1,20 +1,16 @@
 #include <iostream>
 #include <iomanip>
 #include <chrono>
-#include <cstdlib>
 
 #include "PsiTracker.h"
 
 const int PRECISION = 40;
 
-int main(int N, char* arg[]) {
-   	if (N != 3) {
-   	    std::cout << "     Usage:\n  " << arg[0] << " stoppoint multiplyby" << std::endl;
-   	}
-   	const long long stoppoint = std::atoll(arg[1]);
-   	const long long multiplyby = std::atoll(arg[2]);
+int main() {
+   	long long stoppoint;
+	std::cin >> stoppoint;
 	std::cout << "runtime,n,prime,theta,psi" << std::endl;
-    for (long long a = 1; a <= stoppoint; a*=multiplyby) {
+    for (long long a = 1; a <= stoppoint; a*=10) {
         std::chrono::steady_clock clk;
         std::chrono::time_point<std::chrono::steady_clock, std::chrono::steady_clock::duration> before = clk.now();
         PsiTracker tracker;
