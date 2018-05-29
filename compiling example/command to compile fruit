@@ -1,1 +1,0 @@
-g++ -o fruit fruit.cc -lprimecount -Wl,-rpath=/usr/local/lib
