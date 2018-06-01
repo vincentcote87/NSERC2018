@@ -1,0 +1,6 @@
+lscpu
+
+htop
+
+
+

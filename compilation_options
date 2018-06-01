@@ -1,0 +1,6 @@
+g++ -std=c++11 -c -I"/usr/local/include" -I"/usr/local/sage-7.6/local/include" theta_part.cc shared.cc
+
+
+On schools computers mpfr is already installed:
+
+g++ -std=c++11 -c -I"/usr/local/sage-7.6/local/include" theta_part.cc shared.cc
