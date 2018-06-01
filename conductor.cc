@@ -25,13 +25,13 @@ std::atomic<bool> done[THREADS];
 
 void processRegion (integer n, integer start, integer stop, integer me) {
    const std::string command = std::string("./miscFiles/theta_int_double ") + std::to_string(start) + std::string(" ") + std::to_string(stop) + std::string(" &> ./out/") + std::to_string(n);
-   //std::cout << command << std::endl;
+   std::cout << command << std::endl;
    std::system(command.c_str());
    done[me] = true;
 }
 
-const integer numberOfGaps = 1000;
-const integer gap = 1000000000;
+const integer numberOfGaps = 100;
+const integer gap = 10000000000000;
 
 std::pair<integer, std::pair<integer, integer>> jobDescription(const integer id, const integer start, const integer stop) {
    return std::make_pair(id, std::make_pair(start, stop));
