@@ -24,7 +24,7 @@ const int THREADS = 31;
 std::atomic<bool> done[THREADS];
 
 void processRegion (integer n, integer start, integer stop, integer me) {
-   const std::string command = std::string("./theta_part ") + std::to_string(start) + std::string(" ") + std::to_string(stop) + std::string(" &> ./") + std::to_string(n);
+   const std::string command = std::string("./miscFiles/theta_int_double ") + std::to_string(start) + std::string(" ") + std::to_string(stop) + std::string(" &> ./out/") + std::to_string(n);
    //std::cout << command << std::endl;
    std::system(command.c_str());
    done[me] = true;
