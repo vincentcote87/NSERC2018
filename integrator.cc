@@ -12,9 +12,14 @@ int main(int N, char* arg[]) {
 	}
 	ifstream in;
 	in.open(arg[1]);
+	
 	int_double sum = 0.0;
+	int_double error = 0.0;
+	int_double y, oldSum;
 	uint64_t from = -1;
 	string line;
+	
+	
 	//int where = 1;
 	while (getline(in, line)) {
 		for (int i = 0; i < line.size(); ++i) {
@@ -31,7 +36,12 @@ int main(int N, char* arg[]) {
 		istringstream iss{line};
 		iss >> q >> w >> e >> r >> t >> low >> high;
 		//cout << where++ << ' ';
-		sum += int_double{low, high};
+		
+		oldSum = sum;
+		y = int_double{low, high} + error;
+		sum = oldSum + y;
+		error = (oldSum - sum) + y;
+		
 		if (from == -1)
 			from = w;
 		cout << q << ',' << from << ',' << e << ',' << r << ',' << t << ',';
