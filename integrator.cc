@@ -32,7 +32,8 @@ int main(int N, char* arg[]) {
 				break;
 			}
 		}
-		double q, w, e, r, t, low, high;
+		uint64_t q, w, e, r, t;
+		double low, high;
 		istringstream iss{line};
 		iss >> q >> w >> e >> r >> t >> low >> high;
 		//cout << where++ << ' ';
