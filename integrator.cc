@@ -13,6 +13,7 @@ int main(int N, char* arg[]) {
 	ifstream in;
 	in.open(arg[1]);
 	int_double sum = 0.0;
+	uint64_t from = -1;
 	string line;
 	//int where = 1;
 	while (getline(in, line)) {
@@ -31,7 +32,9 @@ int main(int N, char* arg[]) {
 		iss >> q >> w >> e >> r >> t >> low >> high;
 		//cout << where++ << ' ';
 		sum += int_double{low, high};
-		cout << q << ',' << w << ',' << e << ',' << r << ',' << t << ',';
+		if (from == -1)
+			from = w;
+		cout << q << ',' << from << ',' << e << ',' << r << ',' << t << ',';
 		print_int_double(sum);
 		cout << endl;
 	}
