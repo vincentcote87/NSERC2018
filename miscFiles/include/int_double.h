@@ -53,12 +53,12 @@ class int_double{
 public:
   double left;
   double right;
-	
+
 inline  int_double ()                      // constructors
   {
   };
 // does no rounding, see below
-inline int_double(double l) 
+inline int_double(double l)
 {
   left=l;
   right=l;
@@ -72,13 +72,13 @@ inline int_double(double l)
 // you probably want int_third=int_double(1.0)/3.0;
 inline int_double(double l,double r)
 {
-	
+
     if(l>r)
     {
 	printf("Error constructing int_double, right %20.18e < left %20.18e . Exiting.\n",r,l);
         exit(1);
     };
-	
+
     left=l;
     right=r;
 }
@@ -124,6 +124,13 @@ inline int_double operator += (int_double &lhs, const int_double &rhs)
   return lhs;
 }
 
+inline int_double operator += (int_double &lhs, const double &rhs) {
+  int_double temp;
+  temp.left = lhs.left + rhs;
+  temp.right = lhs.right + rhs;
+  return (temp);
+}
+
 // unary minus
 inline int_double operator - (const int_double &x)
 {
@@ -147,7 +154,7 @@ inline int_double operator * (const int_double &lhs, const int_double &rhs)
   double mx=max(a,b,c,d);
   double mn=min(a,b,c,d);
   return int_double(nextbefore(mn),nextafter(mx));
-}  
+}
 
 bool contains_zero(const int_double &x)
 {
@@ -196,5 +203,3 @@ inline int_double log(const int_double &x)
 
 
 #endif
-
-
