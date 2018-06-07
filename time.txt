@@ -9,3 +9,6 @@ using conductor to run 0 through 10^15 split as
 100 blocks 10^13 wide
 
 left for the weekend :)
+
+Recording of the time didn't print (Maybe I forgot?)
+Estimate of the time it took on Eudoxus: 4 days
