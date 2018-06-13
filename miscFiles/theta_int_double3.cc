@@ -6,7 +6,7 @@
 int main(int argc, char* argv[]) {
    std::chrono::steady_clock clk;
    std::chrono::time_point<std::chrono::steady_clock, std::chrono::steady_clock::duration> before = clk.now();
-   
+
    //int_double theta = 0.0;
    //int_double temp = 0.0;
    //int_double y = 0.0;
@@ -28,7 +28,7 @@ int main(int argc, char* argv[]) {
 	 }
       }
    }
-   
+
    primesieve::iterator it;
    it.skipto(start);
    uint64_t firstChangePrime, lastChangePrime;
@@ -43,11 +43,16 @@ int main(int argc, char* argv[]) {
       int_double y = 0.0;
       int_double errorTerm = 0.0;
       for (stopgap = startgap + gap; prime <= stopgap; prime = it.next_prime()) {
-	 lastChangePrime = prime;
-	 temp = theta;
-	 y = static_cast<int_double>(log(prime)) + errorTerm;
-	 theta = temp + y;
-	 errorTerm = (temp - theta) + y;
+	       lastChangePrime = prime;
+	//  temp = theta;
+	//  y = static_cast<int_double>(log(prime)) + errorTerm;
+	//  theta = temp + y;
+	//  errorTerm = (temp - theta) + y;
+
+        y = log(prime) - errorTerm;
+        temp = theta + y;
+        errorTerm = (temp - theta) - y;
+        theta = temp;
       }
       long long ms = (std::chrono::duration_cast<std::chrono::milliseconds>(clk.now()-before)).count();
       //       runtime  ,              parameters   ,                bounding changes              ,

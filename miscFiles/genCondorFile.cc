@@ -13,7 +13,7 @@ int main() {
    uint64_t range = 1000000000000; //of each run
    uint64_t subrange = 1000000000; //how often to record during the run
    uint64_t temp = 0;
-   string outputFolder = "../errorCarried";
+   string outputFolder = "outputJune12";
 
    cout<<"Enter the name of the executable program: ";
    cin>>exeName;
