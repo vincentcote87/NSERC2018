@@ -8,13 +8,11 @@
 using namespace std;
 
 struct Entry {
-   uint64_t milliseconds, start, stop, first, last;
-   int_double theta, error;
+	uint64_t milliseconds, start, stop, first, last;
+	int_double theta;
 	void print() const {
 		cout << milliseconds << ',' << start << ',' << stop << ',' << first << ',' << last << ',';
 		print_int_double(theta);
-		cout << ',';
-		print_int_double(error);
 	}
 	void println() const {
 		print();
@@ -47,12 +45,11 @@ void interpret(const char* source) {
                     }
             }
             Entry e;
-            double low, high, elow, ehigh;
+            double low, high;
             istringstream iss{line};
             iss >> e.milliseconds >> e.start >> e.stop >> e.first >> e.last \
-            	>> low >> high >> elow >> ehigh;
+            	>> low >> high;
             e.theta = int_double{low, high};
-	    e.error = int_double{elow, ehigh};
             data.push_back(e);
     }
 }
