@@ -33,9 +33,9 @@ int main(int N, char* arg[]) {
 			}
 		}
 		uint64_t q, w, e, r, t;
-		double low, high;
+		double low, high, elow, ehigh; //note: for now discarding low and high error to see if we got same values
 		istringstream iss{line};
-		iss >> q >> w >> e >> r >> t >> low >> high;
+		iss >> q >> w >> e >> r >> t >> low >> high >> elow >> ehigh;
 		//cout << where++ << ' ';
 		
 		oldSum = sum;

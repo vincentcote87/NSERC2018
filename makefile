@@ -18,7 +18,7 @@ condor:
 	condor_compile $(CXX) $(IFLAGS) $(LFLAGS) main.cc -o $(PROGRAM) $(LINKFLAGS) $(RPATH)
 
 custom:
-	$(CXX) $(IFLAGS) $(LFLAGS) $(C).cc -o $(C) $(LINKFLAGS) $(RPATH) $(F)
+	$(CXX) $(IFLAGS) $(LFLAGS) $(C).cc -o $(C) $(LINKFLAGS) $(RPATH) $(F) -static
 
 clean:
 	rm -rf *.o *~ main

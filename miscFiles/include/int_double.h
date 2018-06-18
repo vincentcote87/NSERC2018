@@ -9,43 +9,41 @@
 #include <float.h>
 #include <math.h>
 #include <algorithm>
-#include <iomanip>
-#include <iostream>
 #include "crlibm.h"
 
 using namespace std;
 
-inline long double min(const long double a, const long double b, const long double c, const long double d)
+inline double min(const double a, const double b, const double c, const double d)
 {
   return std::min(std::min(a,b),std::min(c,d));
 }
 
-inline long double max(const long double a, const long double b, const long double c, const long double d)
+inline double max(const double a, const double b, const double c, const double d)
 {
   return std::max(std::max(a,b),std::max(c,d));
 }
 
 
-long double nextbefore(const long double);
+double nextbefore(const double);
 
-inline long double nextafter (const long double x)
+inline double nextafter (const double x)
 {
   if(!isfinite(x)) return nan("");
   if(x==0.0) return DBL_MIN;
-  long double xx=x;
-  __uint128_t *i;
-  i=(__uint128_t *) &xx;
+  double xx=x;
+  uint64_t *i;
+  i=(uint64_t *) &xx;
   i[0]+=(x>0.0 ? 1 : -1);
   return xx;
 }
 
-inline long double nextbefore (const long double x)
+inline double nextbefore (const double x)
 {
   if(!isfinite(x)) return nan("");
   if(x==0.0) return -DBL_MIN;
-  long double xx=x;
-  __uint128_t *i;
-  i=(__uint128_t *) &xx;
+  double xx=x;
+  uint64_t *i;
+  i=(uint64_t *) &xx;
   i[0]+=(x>0.0 ? -1 : 1);
   return xx;
 }
@@ -53,14 +51,14 @@ inline long double nextbefore (const long double x)
 // most of the operators aren't defined yet
 class int_double{
 public:
-  long double left;
-  long double right;
+  double left;
+  double right;
 
 inline  int_double ()                      // constructors
   {
   };
 // does no rounding, see below
-inline int_double(long double l)
+inline int_double(double l)
 {
   left=l;
   right=l;
@@ -72,7 +70,7 @@ inline int_double(long double l)
 //      results in a point interval at nearest to 1/3.
 //
 // you probably want int_third=int_double(1.0)/3.0;
-inline int_double(long double l,long double r)
+inline int_double(double l,double r)
 {
 
     if(l>r)
@@ -86,22 +84,22 @@ inline int_double(long double l,long double r)
 }
 
    friend int_double operator + (const int_double &lhs, const int_double &rhs);
-   friend int_double operator + (const int_double &lhs, const long double &rhs);
+   friend int_double operator + (const int_double &lhs, const double &rhs);
    friend int_double operator - (const int_double &lhs, const int_double &rhs);
-   friend int_double operator - (const int_double &lhs, const long double &rhs);
+   friend int_double operator - (const int_double &lhs, const double &rhs);
    friend int_double operator - (const int_double &lhs);
    friend int_double operator * (const int_double &lhs, const int_double &rhs);
-   friend int_double operator * (const int_double &lhs, const long double &rhs);
+   friend int_double operator * (const int_double &lhs, const double &rhs);
   friend int_double operator / (const int_double &lhs, const int_double &rhs);
-  friend int_double operator / (const int_double &lhs, const long double &rhs);
+  friend int_double operator / (const int_double &lhs, const double &rhs);
   friend int_double operator += (int_double &lhs, const int_double &rhs);
-  friend int_double operator += (int_double &lhs, const long double &rhs);
+  friend int_double operator += (int_double &lhs, const double &rhs);
   friend int_double operator -= (int_double &lhs, const int_double &rhs);
-  friend int_double operator -= (int_double &lhs, const long double &rhs);
+  friend int_double operator -= (int_double &lhs, const double &rhs);
   friend int_double operator *= (int_double &lhs, const int_double &rhs);
-  friend int_double operator *= (int_double &lhs, const long double &rhs);
+  friend int_double operator *= (int_double &lhs, const double &rhs);
   friend int_double operator /= (int_double &lhs, const int_double &rhs);
-  friend int_double operator /= (int_double &lhs, const long double &rhs);
+  friend int_double operator /= (int_double &lhs, const double &rhs);
   friend int operator >= (const int_double &lhs, const int_double &rhs);
   friend int operator > (const int_double &lhs, const int_double &rhs);
   friend int operator < (const int_double &lhs, const int_double &rhs);
@@ -109,8 +107,7 @@ inline int_double(long double l,long double r)
 
 void print_int_double(const int_double &x)
 {
-  std::cout<<setprecision(80)<<scientific<<"["<<x.left<<","<<x.right<<"]";
-  // printf("[%20.18e,%20.18e]",x.left,x.right);
+  printf("[%20.18e,%20.18e]",x.left,x.right);
 };
 
 inline int_double operator + (const int_double &lhs, const int_double &rhs)
@@ -127,7 +124,7 @@ inline int_double operator += (int_double &lhs, const int_double &rhs)
   return lhs;
 }
 
-inline int_double operator += (int_double &lhs, const long double &rhs) {
+inline int_double operator += (int_double &lhs, const double &rhs) {
   int_double temp;
   temp.left = lhs.left + rhs;
   temp.right = lhs.right + rhs;
@@ -150,12 +147,12 @@ inline int_double operator - (const int_double &lhs, const int_double &rhs)
 
 inline int_double operator * (const int_double &lhs, const int_double &rhs)
 {
-  long double a=lhs.left*rhs.left;
-  long double b=lhs.left*rhs.right;
-  long double c=lhs.right*rhs.left;
-  long double d=lhs.right*rhs.right;
-  long double mx=max(a,b,c,d);
-  long double mn=min(a,b,c,d);
+  double a=lhs.left*rhs.left;
+  double b=lhs.left*rhs.right;
+  double c=lhs.right*rhs.left;
+  double d=lhs.right*rhs.right;
+  double mx=max(a,b,c,d);
+  double mn=min(a,b,c,d);
   return int_double(nextbefore(mn),nextafter(mx));
 }
 
@@ -180,12 +177,12 @@ inline int_double operator / (const int_double &lhs, const int_double &rhs)
 {
   if(contains_zero(rhs))
     return int_double(-nan(""),nan(""));
-  long double a=lhs.left/rhs.left;
-  long double b=lhs.left/rhs.right;
-  long double c=lhs.right/rhs.left;
-  long double d=lhs.right/rhs.right;
-  long double mx=max(a,b,c,d);
-  long double mn=min(a,b,c,d);
+  double a=lhs.left/rhs.left;
+  double b=lhs.left/rhs.right;
+  double c=lhs.right/rhs.left;
+  double d=lhs.right/rhs.right;
+  double mx=max(a,b,c,d);
+  double mn=min(a,b,c,d);
   return int_double(nextbefore(mn),nextafter(mx));
 }
 
@@ -198,7 +195,7 @@ inline int_double log(const int_double &x)
 {
   if(x.left==x.right) // faster?
     {
-      long double rd=log_rd(x.left);
+      double rd=log_rd(x.left);
       return int_double(rd,nextafter(rd));
     }
   return log_two_sided(x);

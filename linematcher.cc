@@ -8,8 +8,9 @@
 using namespace std;
 
 struct Entry {
-   uint64_t milliseconds, start, stop, first, last;
-   int_double theta, error;
+	uint64_t milliseconds, start, stop, first, last;
+   int_double theta;
+   int_double error;
 	void print() const {
 		cout << milliseconds << ',' << start << ',' << stop << ',' << first << ',' << last << ',';
 		print_int_double(theta);
@@ -52,7 +53,7 @@ void interpret(const char* source) {
             iss >> e.milliseconds >> e.start >> e.stop >> e.first >> e.last \
             	>> low >> high >> elow >> ehigh;
             e.theta = int_double{low, high};
-	    e.error = int_double{elow, ehigh};
+	    e.error = int_double{0, 0};
             data.push_back(e);
     }
 }
